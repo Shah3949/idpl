@@ -1725,6 +1725,15 @@
     </div>
   </div>
 
+  <!-- Include EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "zYf8GFVYbrbdXSTNF",
+        });
+      })();
+  </script>
   <script>
     // ========== PAGE ROUTING ==========
     function showPage(page) {
@@ -1803,6 +1812,7 @@
     }
 
     // ========== CONTACT FORM ==========
+    // ========== CONTACT FORM ==========
     async function submitContactForm() {
       const name = document.getElementById('cf-name').value.trim();
       const email = document.getElementById('cf-email').value.trim();
@@ -1819,33 +1829,51 @@
         return;
       }
 
-      // Loading state
+      // Loading state (Kept exactly as your original)
       const btn = document.getElementById('submitBtn');
       document.getElementById('submitBtnText').textContent = 'Sending...';
       document.getElementById('submitArrow').classList.add('hidden');
       document.getElementById('submitSpinner').classList.remove('hidden');
       btn.disabled = true;
 
-      // Simulate API call (replace with real EmailJS/Web3Forms call)
-      await new Promise(r => setTimeout(r, 2000));
+      // New EmailJS integration parameters
+      const templateParams = {
+        cf_name: name,
+        cf_email: email,
+        cf_phone: phone,
+        cf_project: project,
+        cf_message: message
+      };
 
-      // Populate modal
-      document.getElementById('modalName').textContent = name;
-      document.getElementById('modalEmail').textContent = email;
-      document.getElementById('modalProject').textContent = project;
+      try {
+        // 1. Sends email to your Gmail
+        await emailjs.send('service_t4q3jjj', 'template_y7r6h64', templateParams);
 
-      // Reset button
-      document.getElementById('submitBtnText').textContent = 'Submit Query';
-      document.getElementById('submitArrow').classList.remove('hidden');
-      document.getElementById('submitSpinner').classList.add('hidden');
-      btn.disabled = false;
+        // 2. Sends automatic "Thank You" reply to the sender
+        await emailjs.send('service_t4q3jjj', 'template_5nz6g3m', templateParams);
 
-      // Clear form
-      ['cf-name', 'cf-email', 'cf-phone', 'cf-message'].forEach(id => document.getElementById(id).value = '');
-      document.getElementById('cf-project').value = '';
+        // Populate modal (Kept exactly as your original)
+        document.getElementById('modalName').textContent = name;
+        document.getElementById('modalEmail').textContent = email;
+        document.getElementById('modalProject').textContent = project;
 
-      // Show modal
-      document.getElementById('successModal').classList.remove('hidden');
+        // Clear form (Kept exactly as your original)
+        ['cf-name', 'cf-email', 'cf-phone', 'cf-message'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('cf-project').value = '';
+
+        // Show modal (Kept exactly as your original)
+        document.getElementById('successModal').classList.remove('hidden');
+
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        alert('An error occurred while sending your message. Please try again later.');
+      } finally {
+        // Reset button state regaservice_t4q3jjjrdless of success or failure
+        document.getElementById('submitBtnText').textContent = 'Submit Query';
+        document.getElementById('submitArrow').classList.remove('hidden');
+        document.getElementById('submitSpinner').classList.add('hidden');
+        btn.disabled = false;
+      }
     }
 
     function closeModal(e) {
