@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impressive Infrabuild | Premium Construction & Interiors</title>
+  <title>Impressive Developers | Premium Construction & Interiors</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
     rel="stylesheet">
@@ -60,7 +60,12 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      transition: all 0.4s ease;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.35s ease;
+      transform: translateY(0);
+    }
+
+    nav.nav-hidden {
+      transform: translateY(-100%);
     }
 
     nav.scrolled {
@@ -209,48 +214,50 @@
     /* CARDS */
     .service-card {
       background: white;
-      border-radius: 12px;
-      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      padding: 0;
       transition: all 0.4s ease;
       border: 1px solid #E2E8F0;
       position: relative;
       overflow: hidden;
     }
 
-    .service-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--dark), #334155);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    .service-card:hover::before {
-      opacity: 1;
-    }
-
     .service-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(30, 41, 59, 0.2);
-    }
-
-    .service-card>* {
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
     }
 
     .service-card:hover .card-title {
       color: var(--gold) !important;
     }
 
-    .service-card:hover .card-text,
-    .service-card:hover .card-icon {
-      color: #E2E8F0 !important;
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
     }
 
-    .service-card:hover .card-icon-bg {
-      background: rgba(217, 119, 6, 0.2) !important;
+    .service-card:hover .card-image {
+      transform: scale(1.04);
+    }
+
+    .service-card-body {
+      padding: 1.75rem 1.5rem 2rem;
+    }
+
+    .service-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: #FEF3C7;
+      color: #92400E;
+      display: inline-block;
+      margin-bottom: 0.85rem;
     }
 
     /* PORTFOLIO */
@@ -700,22 +707,6 @@
         </div>
       </div>
 
-      <!-- Carousel Controls -->
-      <!-- <button onclick="prevSlide()"
-        class="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white/20 transition-all"
-        style="background:rgba(255,255,255,0.1);backdrop-filter:blur(4px)">
-        <svg width="20" height="20" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
-          <path d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button onclick="nextSlide()"
-        class="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white/20 transition-all"
-        style="background:rgba(255,255,255,0.1);backdrop-filter:blur(4px)">
-        <svg width="20" height="20" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
-          <path d="M9 5l7 7-7 7" />
-        </svg>
-      </button> -->
-
       <!-- Dots -->
       <div class="carousel-dots absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2 items-center">
         <button class="active" onclick="goToSlide(0)" id="dot-0"></button>
@@ -733,7 +724,7 @@
           <div class="text-slate-400 text-sm mt-1">Projects Delivered</div>
         </div>
         <div>
-          <div class="stat-counter">45+</div>
+          <div class="stat-counter">17+</div>
           <div class="text-slate-400 text-sm mt-1">Years Experience</div>
         </div>
         <div>
@@ -756,59 +747,57 @@
           <p class="text-slate-500 mt-6 max-w-xl mx-auto">Whether Impressive Construction Pvt. Ltd. is the design-builder, general contractor or construction manager, we won't compromise when it comes to quality or safety.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Card 1 -->
+          <!-- Card 1: Residential Construction -->
           <div class="service-card reveal stagger-1">
-            <div class="card-icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-              style="background:#FEF3C7">
-              <svg class="card-icon w-7 h-7" style="color:var(--gold)" fill="none" stroke="currentColor"
-                stroke-width="1.8" viewBox="0 0 24 24">
-                <path d="M3 21h18M5 21V7l7-4 7 4v14M10 21v-6h4v6" />
-              </svg>
+            <img class="card-image"
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500&q=80"
+              alt="Residential Construction">
+            <div class="service-card-body">
+              <span class="service-badge">Construction</span>
+              <h3 class="card-title font-bold text-lg mb-2" style="color:var(--dark)">Residential Construction</h3>
+              <p class="card-text text-sm leading-relaxed mb-3" style="color:#64748B">Homes, apartments, housing
+                colonies & renovations — built to stand a lifetime.</p>
+              <p class="text-xs font-medium" style="color:var(--gold)">Homes • Colonies • Renovations</p>
             </div>
-            <h3 class="card-title font-bold text-lg mb-3" style="color:var(--dark)">Residential Construction</h3>
-            <p class="card-text text-sm leading-relaxed" style="color:#64748B">Homes, apartments, housing colonies &
-              renovations — built to stand a lifetime.</p>
           </div>
-          <!-- Card 2 -->
+          <!-- Card 2: Commercial Construction -->
           <div class="service-card reveal stagger-2">
-            <div class="card-icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-              style="background:#FEF3C7">
-              <svg class="card-icon w-7 h-7" style="color:var(--gold)" fill="none" stroke="currentColor"
-                stroke-width="1.8" viewBox="0 0 24 24">
-                <rect x="2" y="3" width="20" height="18" rx="2" />
-                <path d="M8 3v18M16 3v18M2 12h20" />
-              </svg>
+            <img class="card-image"
+              src="../assets/Capture.JPG"
+              alt="Commercial Construction">
+            <div class="service-card-body">
+              <span class="service-badge">Construction</span>
+              <h3 class="card-title font-bold text-lg mb-2" style="color:var(--dark)">Commercial Construction</h3>
+              <p class="card-text text-sm leading-relaxed mb-3" style="color:#64748B">Offices, malls, hotels, retail
+                spaces — functional and iconic commercial builds.</p>
+              <p class="text-xs font-medium" style="color:var(--gold)">Offices • Malls • Hotels</p>
             </div>
-            <h3 class="card-title font-bold text-lg mb-3" style="color:var(--dark)">Commercial Construction</h3>
-            <p class="card-text text-sm leading-relaxed" style="color:#64748B">Offices, malls, hotels, retail spaces —
-              functional and iconic commercial builds.</p>
           </div>
-          <!-- Card 3 -->
+          <!-- Card 3: A-to-Z Interior Design -->
           <div class="service-card reveal stagger-3">
-            <div class="card-icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-              style="background:#FEF3C7">
-              <svg class="card-icon w-7 h-7" style="color:var(--gold)" fill="none" stroke="currentColor"
-                stroke-width="1.8" viewBox="0 0 24 24">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-              </svg>
+            <img class="card-image"
+              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=500&q=80"
+              alt="A-to-Z Interior Design">
+            <div class="service-card-body">
+              <span class="service-badge">Design</span>
+              <h3 class="card-title font-bold text-lg mb-2" style="color:var(--dark)">A-to-Z Interior Design</h3>
+              <p class="card-text text-sm leading-relaxed mb-3" style="color:#64748B">Turnkey interiors — ceilings,
+                wardrobes, modular kitchens & custom furniture.</p>
+              <p class="text-xs font-medium" style="color:var(--gold)">Ceilings • Kitchens • Furniture</p>
             </div>
-            <h3 class="card-title font-bold text-lg mb-3" style="color:var(--dark)">A-to-Z Interior Design</h3>
-            <p class="card-text text-sm leading-relaxed" style="color:#64748B">Turnkey interiors — ceilings, wardrobes,
-              modular kitchens & custom furniture.</p>
           </div>
-          <!-- Card 4 -->
+          <!-- Card 4: 3D Architectural Visualization -->
           <div class="service-card reveal stagger-4">
-            <div class="card-icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-              style="background:#FEF3C7">
-              <svg class="card-icon w-7 h-7" style="color:var(--gold)" fill="none" stroke="currentColor"
-                stroke-width="1.8" viewBox="0 0 24 24">
-                <path
-                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-              </svg>
+            <img class="card-image"
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80"
+              alt="3D Architectural Visualization">
+            <div class="service-card-body">
+              <span class="service-badge">Visualization</span>
+              <h3 class="card-title font-bold text-lg mb-2" style="color:var(--dark)">3D Architectural Visualization</h3>
+              <p class="card-text text-sm leading-relaxed mb-3" style="color:#64748B">See your project in stunning 3D
+                before a single brick is laid.</p>
+              <p class="text-xs font-medium" style="color:var(--gold)">Renders • Walkthroughs • VR</p>
             </div>
-            <h3 class="card-title font-bold text-lg mb-3" style="color:var(--dark)">3D Architectural Visualization</h3>
-            <p class="card-text text-sm leading-relaxed" style="color:#64748B">See your project in stunning 3D before a
-              single brick is laid.</p>
           </div>
         </div>
         <div class="text-center mt-12">
@@ -827,8 +816,7 @@
             <p class="section-tag">Why Choose Us</p>
             <h2 class="section-title text-white">Built on <span class="gold-underline"
                 style="color:var(--gold)">Trust</span>,<br>Delivered with Excellence</h2>
-            <p class="text-slate-400 mt-6 leading-relaxed">With over 15 years of transforming spaces across Bihar and
-              beyond, Impressive Infrabuild has become synonymous with quality, precision, and on-time delivery.</p>
+            <p class="text-slate-400 mt-6 leading-relaxed">With over 17 years of transforming spaces all over India, Impressive Developers has become synonymous with quality, precision, and on-time delivery.</p>
             <div class="mt-10 space-y-5">
               <div class="flex gap-4 items-start">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
@@ -877,7 +865,7 @@
             <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=85" alt="Construction"
               class="rounded-2xl w-full h-96 object-cover">
             <div class="absolute -bottom-6 -left-6 bg-white rounded-xl p-5 shadow-2xl">
-              <div class="stat-counter text-3xl">15+</div>
+              <div class="stat-counter text-3xl">17+</div>
               <div class="text-sm font-semibold mt-1" style="color:#64748B">Years of Excellence</div>
             </div>
             <div class="absolute -top-6 -right-6 rounded-xl p-5 shadow-2xl" style="background:var(--gold)">
@@ -944,7 +932,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="p-8 rounded-2xl reveal" style="background:var(--cream)">
             <div class="flex text-amber-400 mb-4">★★★★★</div>
-            <p class="text-slate-600 leading-relaxed text-sm italic">"Impressive Infrabuild transformed our dream home
+            <p class="text-slate-600 leading-relaxed text-sm italic">"Impressive Developers transformed our dream home
               into reality. The attention to detail and quality of work is unmatched. Absolutely love every corner of
               our new home!"</p>
             <div class="mt-6 flex items-center gap-3">
@@ -1280,8 +1268,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
           <div>
             <p class="section-tag">Who We Are</p>
-            <h2 class="section-title">Patna's Most <span class="gold-underline">Trusted Builders</span></h2>
-            <p class="text-slate-500 mt-6 leading-relaxed">Founded in 2009, Impressive Infrabuild began as a small
+            <h2 class="section-title">Patna's Most <span class="gold-underline">Trusted Builders & Contractors</span></h2>
+            <p class="text-slate-500 mt-6 leading-relaxed">Founded in 2009, Impressive Developers began as a small
               residential contractor in Patna. Today, we are Bihar's premier full-spectrum construction and interior
               design firm, with over 200 successfully delivered projects across residential, commercial, and hospitality
               sectors.</p>
@@ -1467,9 +1455,9 @@
                 <div>
                   <div class="font-semibold text-sm" style="color:var(--dark)">Email</div>
                   <a href="mailto:shahzebsalahuddin0@gmail.com"
-                    class="text-slate-500 text-sm hover:text-amber-600 transition-colors">info@impressiveinfrabuild.com</a><br>
-                  <a href="mailto:projects@impressiveinfrabuild.com"
-                    class="text-slate-500 text-sm hover:text-amber-600 transition-colors">projects@impressiveinfrabuild.com</a>
+                    class="text-slate-500 text-sm hover:text-amber-600 transition-colors">info@impressiveDevelopers.com</a><br>
+                  <a href="mailto:projects@impressiveDevelopers.com"
+                    class="text-slate-500 text-sm hover:text-amber-600 transition-colors">projects@impressiveDevelopers.com</a>
                 </div>
               </div>
               <div class="p-5 rounded-xl flex gap-4 items-start" style="background:white;border:1px solid #E2E8F0">
@@ -1492,14 +1480,14 @@
             <div>
               <p class="font-semibold text-sm mb-4" style="color:var(--dark)">Follow Us & Connect</p>
               <div class="flex gap-3 flex-wrap">
-                <a href="https://www.instagram.com/impressiveinfrabuild" target="_blank" class="social-icon"
+                <a href="https://www.instagram.com/impressiveDevelopers" target="_blank" class="social-icon"
                   style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)" title="Instagram">
                   <svg class="w-5 h-5" fill="white" viewBox="0 0 24 24">
                     <path
                       d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
                   </svg>
                 </a>
-                <a href="https://www.facebook.com/impressiveinfrabuild" target="_blank" class="social-icon"
+                <a href="https://www.facebook.com/impressiveDevelopers" target="_blank" class="social-icon"
                   style="background:#1877F2" title="Facebook">
                   <svg class="w-5 h-5" fill="white" viewBox="0 0 24 24">
                     <path
@@ -1609,7 +1597,7 @@
               <div style="font-weight:800;font-size:1.1rem;color:white;line-height:1">Impressive</div>
               <div
                 style="font-size:0.65rem;color:var(--gold);letter-spacing:0.12em;font-weight:600;text-transform:uppercase">
-                Infrabuild</div>
+                Developers</div>
             </div>
           </div>
           <p class="text-sm leading-relaxed max-w-xs" style="color:#94A3B8">Bihar's most trusted construction and
@@ -1661,7 +1649,7 @@
             <p>FCI Road, Phulwari Sharif,<br>Patna, Bihar — 800001</p>
             <p><a href="tel:+919540855651" class="hover:text-amber-400">+91 9540855651</a></p>
             <p><a href="mailto:shahzebsalahuddin0@gmail.com"
-                class="hover:text-amber-400">info@impressiveinfrabuild.com</a></p>
+                class="hover:text-amber-400">info@impressiveDevelopers.com</a></p>
             <p>Mon–Sat: 9 AM – 7 PM</p>
           </div>
         </div>
@@ -1669,7 +1657,7 @@
 
       <div class="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs"
         style="border-color:rgba(255,255,255,0.08);color:#64748B">
-        <p>© 2024 Impressive Infrabuild. All rights reserved.</p>
+        <p>© 2024 Impressive Developers. All rights reserved.</p>
         <p>Crafted with ♥ in Patna, Bihar</p>
       </div>
     </div>
@@ -1708,15 +1696,15 @@
         </div>
         <div class="text-xs leading-relaxed p-3 rounded-lg"
           style="background:white;color:#374151;font-family:monospace">
-          <strong>From:</strong> Impressive Infrabuild &lt;info@impressiveinfrabuild.com&gt;<br>
-          <strong>Subject:</strong> Thank You for Contacting Impressive Infrabuild!<br><br>
+          <strong>From:</strong> Impressive Developers &lt;info@impressiveDevelopers.com&gt;<br>
+          <strong>Subject:</strong> Thank You for Contacting Impressive Developers!<br><br>
           Dear <strong id="modalName"></strong>,<br><br>
-          Thank you sincerely for reaching out to <strong>Impressive Infrabuild</strong>! We are thrilled to learn about
+          Thank you sincerely for reaching out to <strong>Impressive Developers</strong>! We are thrilled to learn about
           your interest in our services.<br><br>
           Your enquiry regarding <em id="modalProject"></em> has been received and our expert team will connect with you
           <strong>within 24 hours</strong> to discuss your project in detail.<br><br>
           Warm regards,<br>
-          <strong>Team Impressive Infrabuild</strong><br>
+          <strong>Team Impressive Developers</strong><br>
           📍 FCI Road Phulwari Sharif, Patna, Bihar<br>
           📞 +91 9540855651
         </div>
@@ -1760,30 +1748,59 @@
       const idx = pages.indexOf(page);
       if (navLinks[idx]) navLinks[idx].classList.add('active-link');
 
-      // Nav style
-      const nav = document.getElementById('mainNav');
-      if (page === 'home') {
-        nav.className = 'transparent';
-      } else {
-        nav.className = 'solid';
-      }
+      // Reset the auto-hide state and let applyNavClass() figure out
+      // the right background for the new page.
+      navHidden = false;
+      lastScrollY = window.scrollY;
+      applyNavClass();
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setupReveal();
     }
 
-    // ========== NAV SCROLL ==========
-    window.addEventListener('scroll', function () {
-      const nav = document.getElementById('mainNav');
+    // ========== NAV SCROLL (background + auto-hide) ==========
+    let lastScrollY = window.scrollY;
+    let navHidden = false;
+
+    // Background depends on which page is active (and, on home, how far
+    // you've scrolled). This is independent of the show/hide behavior.
+    function getBaseNavClass() {
       const activePage = document.querySelector('.page.active');
       if (activePage && activePage.id === 'page-home') {
-        if (window.scrollY > 80) {
-          nav.className = 'scrolled';
-        } else {
-          nav.className = 'transparent';
-        }
+        return window.scrollY > 80 ? 'scrolled' : 'transparent';
       }
-    });
+      return 'solid';
+    }
+
+    function applyNavClass() {
+      const nav = document.getElementById('mainNav');
+      nav.className = getBaseNavClass() + (navHidden ? ' nav-hidden' : '');
+    }
+
+    window.addEventListener('scroll', function () {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY;
+
+      // Ignore tiny jitters (trackpads, mobile momentum) so the nav
+      // doesn't flicker on a 1-2px scroll.
+      if (Math.abs(delta) > 4) {
+        if (delta > 0 && currentY > 120) {
+          // Scrolling down, and far enough from the top to bother hiding.
+          navHidden = true;
+        } else if (delta < 0) {
+          // Scrolling up, at any position -> reveal immediately.
+          navHidden = false;
+        }
+        lastScrollY = currentY;
+      }
+
+      // Always show the nav once you're back near the top.
+      if (currentY <= 80) {
+        navHidden = false;
+      }
+
+      applyNavClass();
+    }, { passive: true });
 
     // ========== MOBILE MENU ==========
     function toggleMobile() {
@@ -1824,7 +1841,6 @@
       });
     }
 
-    // ========== CONTACT FORM ==========
     // ========== CONTACT FORM ==========
     async function submitContactForm() {
       const name = document.getElementById('cf-name').value.trim();
