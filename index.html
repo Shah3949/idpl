@@ -617,7 +617,7 @@
           </div>
           <div
             style="font-size:0.68rem; color:var(--gold); letter-spacing:0.14em; font-weight:600; text-transform:uppercase; line-height:1; margin-top: 2px;">
-            Constructions
+            Developers 
           </div>
         </div>
       </div>
@@ -701,7 +701,7 @@
       </div>
 
       <!-- Carousel Controls -->
-      <button onclick="prevSlide()"
+      <!-- <button onclick="prevSlide()"
         class="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white/20 transition-all"
         style="background:rgba(255,255,255,0.1);backdrop-filter:blur(4px)">
         <svg width="20" height="20" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
@@ -714,7 +714,7 @@
         <svg width="20" height="20" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
           <path d="M9 5l7 7-7 7" />
         </svg>
-      </button>
+      </button> -->
 
       <!-- Dots -->
       <div class="carousel-dots absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2 items-center">
@@ -733,7 +733,7 @@
           <div class="text-slate-400 text-sm mt-1">Projects Delivered</div>
         </div>
         <div>
-          <div class="stat-counter">15+</div>
+          <div class="stat-counter">45+</div>
           <div class="text-slate-400 text-sm mt-1">Years Experience</div>
         </div>
         <div>
@@ -753,8 +753,7 @@
         <div class="text-center mb-16 reveal">
           <p class="section-tag">What We Build</p>
           <h2 class="section-title">Our Core <span class="gold-underline">Services</span></h2>
-          <p class="text-slate-500 mt-6 max-w-xl mx-auto">End-to-end construction and design solutions for residential,
-            commercial, and interior projects across Patna and beyond.</p>
+          <p class="text-slate-500 mt-6 max-w-xl mx-auto">Whether Impressive Construction Pvt. Ltd. is the design-builder, general contractor or construction manager, we won't compromise when it comes to quality or safety.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <!-- Card 1 -->
@@ -1155,6 +1154,7 @@
           <button class="filter-btn active" onclick="filterProjects('all', this)">All Projects</button>
           <button class="filter-btn" onclick="filterProjects('past', this)">Past Projects</button>
           <button class="filter-btn" onclick="filterProjects('upcoming', this)">Upcoming Projects</button>
+          <button class="filter-btn" onclick="filterProjects('Own Project', this)">Own Projects</button>
         </div>
 
         <!-- Project Grid -->
@@ -1226,14 +1226,25 @@
             </div>
           </div>
 
-          <div class="project-card relative bg-white" style="height:340px" data-cat="upcoming">
+          <div class="project-card relative bg-white" style="height:340px" data-cat="Own Project">
             <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=85" alt="Emerald Heights"
               class="w-full h-48 object-cover">
             <div class="p-5">
-              <span class="status-badge badge-coming">Coming Soon</span>
-              <h3 class="font-bold text-lg mt-2" style="color:var(--dark)">Emerald Heights</h3>
+              <span class="status-badge badge-done">Completed Own project</span>
+              <h3 class="font-bold text-lg mt-2" style="color:var(--dark)">Satyamev heights</h3>
               <p class="text-slate-500 text-sm mt-1">32-floor residential tower, Patna City</p>
-              <p class="text-xs mt-2 font-medium" style="color:var(--gold)">Residential • Expected 2026</p>
+              <p class="text-xs mt-2 font-medium" style="color:var(--gold)">Residential • Completed 2025</p>
+            </div>
+          </div>
+
+          <div class="project-card relative bg-white" style="height:340px" data-cat="upcoming">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&q=85" alt="Mall"
+              class="w-full h-48 object-cover">
+            <div class="p-5">
+              <span class="status-badge badge-coming">Coming Soon</span>
+              <h3 class="font-bold text-lg mt-2" style="color:var(--dark)">Patna Central Mall</h3>
+              <p class="text-slate-500 text-sm mt-1">500,000 sqft premium shopping destination</p>
+              <p class="text-xs mt-2 font-medium" style="color:var(--gold)">Commercial • Expected 2026</p>
             </div>
           </div>
 
