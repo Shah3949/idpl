@@ -211,6 +211,44 @@
       }
     }
 
+    /* TESTIMONIAL TICKER */
+    .ticker-viewport {
+      overflow: hidden;
+      position: relative;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 1.75rem;
+      width: max-content;
+      animation: tickerScroll 42s linear infinite;
+    }
+
+    .ticker-viewport:hover .ticker-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .ticker-card {
+      flex: 0 0 auto;
+      width: 340px;
+    }
+
+    @media (max-width: 640px) {
+      .ticker-card {
+        width: 280px;
+      }
+      .ticker-track {
+        animation-duration: 30s;
+      }
+    }
+
     /* CARDS */
     .service-card {
       background: white;
@@ -965,48 +1003,9 @@
           <p class="section-tag">Client Stories</p>
           <h2 class="section-title">What Our <span class="gold-underline">Clients Say</span></h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="p-8 rounded-2xl reveal" style="background:var(--cream)">
-            <div class="flex text-amber-400 mb-4">★★★★★</div>
-            <p class="text-slate-600 leading-relaxed text-sm italic">"Impressive Groups transformed our dream home
-              into reality. The attention to detail and quality of work is unmatched. Absolutely love every corner of
-              our new home!"</p>
-            <div class="mt-6 flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm"
-                style="background:var(--gold)">RS</div>
-              <div>
-                <div class="font-semibold text-sm" style="color:var(--dark)">Rajesh Sharma</div>
-                <div class="text-xs text-slate-500">3BHK Villa Owner, Patna</div>
-              </div>
-            </div>
-          </div>
-          <div class="p-8 rounded-2xl reveal stagger-2" style="background:var(--cream)">
-            <div class="flex text-amber-400 mb-4">★★★★★</div>
-            <p class="text-slate-600 leading-relaxed text-sm italic">"The 3D visualization service helped us understand
-              exactly what our office would look like before construction. The final result was even better than the
-              renders!"</p>
-            <div class="mt-6 flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm"
-                style="background:var(--dark)">PK</div>
-              <div>
-                <div class="font-semibold text-sm" style="color:var(--dark)">Priya Kumari</div>
-                <div class="text-xs text-slate-500">CEO, TechStart Patna</div>
-              </div>
-            </div>
-          </div>
-          <div class="p-8 rounded-2xl reveal stagger-3" style="background:var(--cream)">
-            <div class="flex text-amber-400 mb-4">★★★★★</div>
-            <p class="text-slate-600 leading-relaxed text-sm italic">"The modular kitchen and interiors they designed
-              are simply stunning. On-time delivery and transparent pricing — exactly what you want in a construction
-              partner."</p>
-            <div class="mt-6 flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm"
-                style="background:#059669">AM</div>
-              <div>
-                <div class="font-semibold text-sm" style="color:var(--dark)">Amit Mishra</div>
-                <div class="text-xs text-slate-500">Homeowner, Boring Road</div>
-              </div>
-            </div>
+        <div class="ticker-viewport reveal">
+          <div class="ticker-track" id="testimonialTrack">
+            <!-- Testimonial cards are injected here by JS (duplicated for a seamless loop) -->
           </div>
         </div>
       </div>
@@ -1912,6 +1911,61 @@
     function resetAuto() { clearInterval(autoSlide); autoSlide = setInterval(() => goToSlide(currentSlide + 1), 5000); }
     autoSlide = setInterval(() => goToSlide(currentSlide + 1), 5000);
 
+    // ========== TESTIMONIAL TICKER ==========
+    const testimonials = [
+      {
+        text: "Impressive Groups transformed our dream home into reality. The attention to detail and quality of work is unmatched. Absolutely love every corner of our new home!",
+        initials: "RS", bg: "var(--gold)", name: "Rajesh Sharma", role: "3BHK Villa Owner, Patna"
+      },
+      {
+        text: "The 3D visualization service helped us understand exactly what our office would look like before construction. The final result was even better than the renders!",
+        initials: "PK", bg: "var(--dark)", name: "Priya Kumari", role: "CEO, TechStart Patna"
+      },
+      {
+        text: "The modular kitchen and interiors they designed are simply stunning. On-time delivery and transparent pricing — exactly what you want in a construction partner.",
+        initials: "AM", bg: "#059669", name: "Amit Mishra", role: "Homeowner, Boring Road"
+      },
+      {
+        text: "From the foundation to the final coat of paint, communication was clear at every step. Our commercial complex was delivered ahead of schedule and on budget.",
+        initials: "SV", bg: "#7C3AED", name: "Sunita Verma", role: "Director, Verma Enterprises"
+      },
+      {
+        text: "Professional, punctual, and honest. They handled our renovation with such care that our old home now feels brand new — highly recommend Impressive Groups.",
+        initials: "MK", bg: "#DC2626", name: "Manoj Kumar", role: "Homeowner, Kankarbagh"
+      },
+      {
+        text: "Their team turned a small budget into a beautifully designed office space. Every rupee was used wisely and the results speak for themselves.",
+        initials: "NT", bg: "#0284C7", name: "Neha Thakur", role: "Founder, Thakur Consultancy"
+      }
+    ];
+
+    function buildTestimonialCard(t) {
+      const card = document.createElement('div');
+      card.className = 'ticker-card p-8 rounded-2xl';
+      card.style.background = 'var(--cream)';
+      card.innerHTML = `
+        <div class="flex text-amber-400 mb-4">★★★★★</div>
+        <p class="text-slate-600 leading-relaxed text-sm italic">"${t.text}"</p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm"
+            style="background:${t.bg}">${t.initials}</div>
+          <div>
+            <div class="font-semibold text-sm" style="color:var(--dark)">${t.name}</div>
+            <div class="text-xs text-slate-500">${t.role}</div>
+          </div>
+        </div>`;
+      return card;
+    }
+
+    function buildTestimonialTicker() {
+      const track = document.getElementById('testimonialTrack');
+      if (!track || track.dataset.built) return;
+      // Render the list twice back-to-back so the CSS animation (which
+      // translates by -50%) loops seamlessly with no visible jump/reset.
+      [...testimonials, ...testimonials].forEach(t => track.appendChild(buildTestimonialCard(t)));
+      track.dataset.built = 'true';
+    }
+
     // ========== PROJECT FILTER ==========
     function filterProjects(cat, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -2008,6 +2062,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', setupReveal);
+    document.addEventListener('DOMContentLoaded', buildTestimonialTicker);
   </script>
 </body>
 
